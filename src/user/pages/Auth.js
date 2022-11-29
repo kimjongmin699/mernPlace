@@ -74,16 +74,19 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         setIsLoading(true)
-        const response = await fetch('http://localhost:5000/api/users/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: formState.inputs.email.value,
-            password: formState.inputs.password.value,
-          }),
-        })
+        const response = await fetch(
+          'https://mern-place123.herokuapp.com/api/users/login',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: formState.inputs.email.value,
+              password: formState.inputs.password.value,
+            }),
+          }
+        )
 
         const responseData = await response.json()
         if (!response.ok) {
@@ -107,10 +110,13 @@ const Auth = () => {
 
         console.log('image', formState.inputs.image.value)
 
-        const response = await fetch('http://localhost:5000/api/users/signup', {
-          method: 'POST',
-          body: formData,
-        })
+        const response = await fetch(
+          process.env.REACT_APP_BACKEND + '/users/signup',
+          {
+            method: 'POST',
+            body: formData,
+          }
+        )
 
         const responseData = await response.json()
         if (!response.ok) {

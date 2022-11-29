@@ -8,14 +8,12 @@ const Upload = () => {
   const [selectedFile, setSelectedFile] = useState(null)
   const [showAlert, setShowAlert] = useState(false)
 
-  const ACCESS_KEY = 'AKIAUDWXLVGIJLGNJ5OC'
-  const SECRET_ACCESS_KEY = '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'
   const REGION = 'ap-northeast-2'
   const S3_BUCKET = 'mern6858'
 
   AWS.config.update({
-    accessKeyId: ACCESS_KEY,
-    secretAccessKey: SECRET_ACCESS_KEY,
+    accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+    secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
   })
 
   const myBucket = new AWS.S3({
